@@ -4,7 +4,7 @@ This repo tests [PR #14715](https://github.com/payloadcms/payload/pull/14715) wh
 
 It is based on the [Payload Cloudflare template](https://github.com/payloadcms/payload/tree/main/templates/with-cloudflare-d1) with the addition of:
 
-- `@connorads/kv-cloudflare` - the Cloudflare KV adapter (published from the PR branch)
+- [`@connorads/kv-cloudflare`](https://www.npmjs.com/package/@connorads/kv-cloudflare) - the Cloudflare KV adapter (published from the PR branch)
 - KV namespace binding in `wrangler.jsonc`
 - KV configuration in `payload.config.ts`
 
