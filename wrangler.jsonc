@@ -23,6 +23,13 @@
       "remote": true,
     },
   ],
+  "kv_namespaces": [
+    {
+      "binding": "PAYLOAD_KV",
+      "id": "46d027bea8744f12bb0ada3dbaf0d79f",
+      "preview_id": "1f2994c9e4ca496b973a692778b7b262",
+    },
+  ],
   "services": [
     // The service should match the "name" of your worker
     // {

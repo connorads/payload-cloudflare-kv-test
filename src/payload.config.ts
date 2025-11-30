@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
 import { GetPlatformProxyOptions } from 'wrangler'
 import { r2Storage } from '@payloadcms/storage-r2'
+import { cloudflareKVAdapter } from '@payloadcms/kv-cloudflare'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -35,7 +36,10 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-db: sqliteD1Adapter({ binding: cloudflare.env.D1 }),
+  db: sqliteD1Adapter({ binding: cloudflare.env.D1 }),
+  kv: cloudflareKVAdapter({
+    binding: cloudflare.env.PAYLOAD_KV,
+  }),
   plugins: [
     // storage-adapter-placeholder
     r2Storage({
