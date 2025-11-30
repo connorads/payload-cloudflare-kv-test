@@ -50,6 +50,54 @@ The Worker will have direct access to a D1 SQLite database which Wrangler can co
 
 You can enable read replicas by adding `readReplicas: 'first-primary'` in the DB adapter and then enabling it on your D1 Cloudflare dashboard. Read more about this feature on [our docs](https://payloadcms.com/docs/database/sqlite#d1-read-replicas).
 
+## Deploying Your Own Copy
+
+This template demonstrates Payload with Cloudflare KV support (see [PR #14715](https://github.com/payloadcms/payload/pull/14715)).
+
+### Prerequisites
+
+1. A Cloudflare account with Workers Paid plan
+2. Wrangler CLI installed and authenticated (`pnpm wrangler login`)
+
+### Setup Steps
+
+1. **Create Cloudflare Resources**
+
+   ```bash
+   # Create D1 database
+   pnpm wrangler d1 create my-payload-db
+
+   # Create KV namespace (production)
+   pnpm wrangler kv namespace create PAYLOAD_KV
+
+   # Create KV namespace (preview/dev)
+   pnpm wrangler kv namespace create PAYLOAD_KV --preview
+
+   # Create R2 bucket
+   pnpm wrangler r2 bucket create my-payload-bucket
+   ```
+
+2. **Update `wrangler.jsonc`** with your resource IDs:
+   - `name` - your worker name
+   - `d1_databases[0].database_id` - your D1 database ID
+   - `d1_databases[0].database_name` - your D1 database name
+   - `kv_namespaces[0].id` - your KV namespace ID
+   - `kv_namespaces[0].preview_id` - your KV preview namespace ID
+   - `r2_buckets[0].bucket_name` - your R2 bucket name
+
+3. **Set Environment Variables**
+
+   ```bash
+   pnpm wrangler secret put PAYLOAD_SECRET
+   # Enter a random string (generate with: openssl rand -hex 32)
+   ```
+
+4. **Deploy**
+
+   ```bash
+   pnpm run deploy
+   ```
+
 ## Working with Cloudflare
 
 Firstly, after installing dependencies locally you need to authenticate with Wrangler by running:
