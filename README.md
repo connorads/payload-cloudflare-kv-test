@@ -2,6 +2,9 @@
 
 This repo tests [PR #14715](https://github.com/payloadcms/payload/pull/14715) which adds a Cloudflare KV adapter to Payload CMS.
 
+<img width="777" height="744" alt="image" src="https://github.com/user-attachments/assets/584883b5-f0c8-4e98-bb9a-b81a623ca353" />
+<img width="1242" height="566" alt="image" src="https://github.com/user-attachments/assets/7451c7ed-8967-43af-b2ec-1a64b06a14c2" />
+
 It is based on the [Payload Cloudflare template](https://github.com/payloadcms/payload/tree/main/templates/with-cloudflare-d1) with the addition of:
 
 - `@connorads/kv-cloudflare` - the Cloudflare KV adapter (published from the PR branch)
